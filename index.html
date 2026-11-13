@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Application Flashcards</title>
+<meta name="description" content="57 flashcards on applications, cover letters, transcripts, CGPA, research topics and thesis writing. Tap a card to see the answer.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Application Flashcards: 57 cards for your study abroad application">
+<meta property="og:description" content="Cover letter, transcript, CGPA, research topic and thesis. Tap a card to see the answer.">
+<meta property="og:url" content="https://smgbe.github.io/studytowork-flashcards/">
+<meta property="og:image" content="https://smgbe.github.io/studytowork-flashcards/flashcards-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://smgbe.github.io/studytowork-flashcards/flashcards-preview.png">
+<style>
+:root{--bg:#041a16;--card:#0b332d;--line:#1b5c53;--fg:#fff;--muted:#9ccfc6;--amber:#f5a524;--mint:#2fd1b0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Calibri,Arial,sans-serif;line-height:1.45}
+.wrap{max-width:660px;margin:0 auto;padding:1.4rem 16px 3rem}
+.brand{color:var(--amber);font-weight:700;letter-spacing:.2em;font-size:.85rem}
+h1{font-family:Cambria,Georgia,serif;font-size:1.9rem;margin:.5rem 0 .3rem}
+.sub{color:var(--muted);margin:0 0 1rem}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1rem}
+.chip{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:.35rem .85rem;font:inherit;font-size:.92rem;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--amber);color:#041a16;border-color:var(--amber);font-weight:700}
+.bar{height:8px;background:var(--card);border-radius:999px;overflow:hidden;margin:.3rem 0 .4rem}
+.bar i{display:block;height:100%;width:0;background:var(--mint);transition:width .25s}
+.meta{display:flex;justify-content:space-between;color:var(--muted);font-size:.9rem;margin-bottom:.8rem}
+.scene{perspective:1200px}
+.card{position:relative;width:100%;min-height:340px;border:0;padding:0;background:none;color:inherit;font:inherit;cursor:pointer;text-align:left;transform-style:preserve-3d;transition:transform .5s}
+.card.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border:1px solid var(--line);border-radius:22px;padding:1.5rem;display:flex;flex-direction:column;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.front{background:linear-gradient(160deg,#0f3f37,#0b332d)}
+.back{background:#0e4a40;border-color:var(--mint);transform:rotateY(180deg)}
+.tag{position:absolute;top:1rem;left:1.5rem;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:700}
+.back .tag{color:var(--mint)}
+.q{font-family:Cambria,Georgia,serif;font-size:1.5rem;line-height:1.3;font-weight:700}
+.a{font-size:1.25rem;line-height:1.45}
+.hint{position:absolute;bottom:1rem;left:1.5rem;color:var(--muted);font-size:.85rem}
+.row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+.btn{background:var(--amber);color:#041a16;border:0;border-radius:12px;padding:.75rem 1.2rem;font:inherit;font-weight:700;font-size:1rem;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+.btn.good{background:var(--mint)}
+.btn:disabled{opacity:.4;cursor:default}
+#end{display:none}.score{font-family:Cambria,Georgia,serif;font-size:2.6rem;color:var(--amber);margin:.4rem 0}
+.note{color:var(--muted);font-size:.85rem;margin-top:1.6rem}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.card{transition:none}.bar i{transition:none}}
+</style></head><body>
+<div class="wrap">
+<div class="brand">STUDY TO WORK</div>
+<h1>Application Flashcards</h1>
+<p class="sub">57 cards on applications, cover letters, transcripts, CGPA, research topics and thesis writing. Tap a card to see the answer.</p>
+<div class="chips" id="chips" role="group" aria-label="Choose a topic"></div>
+<div id="study">
+ <div class="bar"><i id="pb"></i></div>
+ <div class="meta"><span id="pos"></span><span id="kn"></span></div>
+ <div class="scene"><button class="card" id="card" type="button" aria-label="Flashcard. Press to flip.">
+  <div class="face front"><span class="tag" id="ct"></span><div class="q" id="q"></div><span class="hint">Tap to see the answer</span></div>
+  <div class="face back"><span class="tag">Answer</span><div class="a" id="a"></div></div>
+ </button></div>
+ <div class="row" id="grade" style="visibility:hidden"><button class="btn good" id="got" type="button">I knew it</button><button class="btn ghost" id="again" type="button">Review again</button></div>
+ <div class="row"><button class="btn ghost" id="prev" type="button">Back</button><button class="btn ghost" id="next" type="button">Skip</button><button class="btn ghost" id="shuf" type="button">Shuffle</button></div>
+</div>
+<div id="end">
+ <div class="score" id="sc"></div><p id="msg"></p>
+ <div class="row"><button class="btn" id="miss" type="button">Review the cards I missed</button><button class="btn ghost" id="restart" type="button">Start again</button></div>
+</div>
+<p class="note">General guidance, not legal or immigration advice. Every university and program sets its own rules, so check the official program page before you apply.</p>
+</div>
+<script>
+var ALL=[{"c": "Application", "q": "When should you start preparing a master's application?", "a": "Many months before the deadline. Documents, translations and references take time. Check each program's deadline on its official page."}, {"c": "Application", "q": "What is the first thing to check about a program?", "a": "The admission requirements on the official program page: degree, subject, language, documents and deadline."}, {"c": "Application", "q": "Why make a checklist for each program?", "a": "Each program can ask for different documents and deadlines. One checklist per program stops you missing an item."}, {"c": "Application", "q": "Should you send the same application to every university?", "a": "No. Adapt your letter and details to each program, and keep every fact consistent."}, {"c": "Application", "q": "What is a certified copy?", "a": "A copy confirmed as true by an authorised body. Some universities require them. Ask which kind they accept."}, {"c": "Application", "q": "Why must facts match across all your documents?", "a": "Dates, names, grades and course titles that differ look careless or suspicious. Keep your CV, letter and transcript consistent."}, {"c": "Application", "q": "What if a document is not in the required language?", "a": "Get a translation in the form the university asks for, such as an official or sworn translation. Check the requirement first."}, {"c": "Application", "q": "Why keep proof that you submitted?", "a": "Save confirmation emails and screenshots. If something goes missing, you can show what you sent and when."}, {"c": "Application", "q": "What should you do after you submit?", "a": "Check the portal and your email often, answer requests fast, and keep copies of everything."}, {"c": "Application", "q": "Can anyone guarantee that you will be admitted?", "a": "No. Be careful with anyone who promises admission. Apply through the official website."}, {"c": "Cover letter", "q": "What is the purpose of a motivation or cover letter?", "a": "To show why this program and why you, using specific facts instead of general claims."}, {"c": "Cover letter", "q": "How should a study letter open?", "a": "Name the program, your degree and your purpose in two sentences."}, {"c": "Cover letter", "q": "What does \"specifics\" mean in a letter?", "a": "Courses, a person or group, and a project that you name. This shows you read about the program."}, {"c": "Cover letter", "q": "What counts as evidence in a letter?", "a": "Facts with numbers, such as your thesis sample size, a result or a project outcome."}, {"c": "Cover letter", "q": "Why avoid \"I am passionate about economics\"?", "a": "Any applicant could write it. Replace stock lines with a fact only you have."}, {"c": "Cover letter", "q": "What does \"fit\" mean?", "a": "A clear link between your past studies or work, the program, and your goal."}, {"c": "Cover letter", "q": "How long should a letter be?", "a": "Follow the program's instruction. If none is given, one page is a common length."}, {"c": "Cover letter", "q": "What tone should a letter have?", "a": "Plain, short sentences and honest claims. No exaggeration."}, {"c": "Cover letter", "q": "Should you copy a sample letter?", "a": "No. Use a sample for structure, then write your own facts. Copied letters sound generic."}, {"c": "Cover letter", "q": "What should you check before sending a letter?", "a": "Read it aloud. Check the program and university names, spelling, facts and file name."}, {"c": "Transcript", "q": "What is an academic transcript?", "a": "The official record of your courses, credits and grades."}, {"c": "Transcript", "q": "What is the difference between a transcript and a degree certificate?", "a": "The transcript lists courses and grades. The certificate confirms that the degree was awarded."}, {"c": "Transcript", "q": "Why does the transcript matter to admissions?", "a": "It shows your subject background and grades, and whether you have the required courses."}, {"c": "Transcript", "q": "What if your university issues transcripts slowly?", "a": "Request it early, ask for a sealed copy if needed, and keep a scan for your records."}, {"c": "Transcript", "q": "What is a grading scale or legend?", "a": "The page that explains how marks are scored. Admissions staff need it to read your grades."}, {"c": "Transcript", "q": "What are ECTS credits?", "a": "The European credit system. A full-time year is usually 60 ECTS."}, {"c": "Transcript", "q": "Should you correct an error on your transcript yourself?", "a": "No. Ask the issuing university to correct it. Never edit an official document."}, {"c": "Transcript", "q": "What if you are missing a prerequisite course?", "a": "Say so honestly, point to related courses, ask what the program accepts, and plan how to close the gap."}, {"c": "CGPA", "q": "What does CGPA mean?", "a": "Cumulative grade point average: your average across all semesters."}, {"c": "CGPA", "q": "Is a CGPA of 3.5 always good?", "a": "It depends on the scale. 3.5 out of 4.0 and 3.5 out of 5.0 mean different things."}, {"c": "CGPA", "q": "Why should you always state the scale?", "a": "Because the same number can mean different levels on different scales."}, {"c": "CGPA", "q": "Can you convert your CGPA yourself and call it official?", "a": "No. Use the conversion the university or program names, and label your own figure as an estimate."}, {"c": "CGPA", "q": "What is the Modified Bavarian Formula?", "a": "A method some German universities use to convert foreign grades: N = 1 + 3 × (Nmax − Nd) / (Nmax − Nmin). Check whether your university uses it."}, {"c": "CGPA", "q": "What do the letters in that formula mean?", "a": "Nmax is the best grade, Nmin is the lowest passing grade, Nd is your grade. In the German system, 1.0 is best."}, {"c": "CGPA", "q": "What can help if your CGPA is low?", "a": "Explain it honestly and show strong recent grades, a good thesis, work experience and good references."}, {"c": "CGPA", "q": "Do grades alone decide admission?", "a": "Often not. Many programs also look at the letter, CV, references and research fit. Check each program."}, {"c": "Research topic", "q": "What makes a good research topic?", "a": "A clear question, narrow enough to finish, with data you can get, and a fit with your supervisor's field."}, {"c": "Research topic", "q": "What is the difference between a topic and a research question?", "a": "The topic is the area. The research question is the specific thing you will answer."}, {"c": "Research topic", "q": "Why narrow a topic?", "a": "A broad topic cannot be finished and stays vague. A narrow one can be answered."}, {"c": "Research topic", "q": "How do you find a research gap?", "a": "Read recent papers, look at their \"future research\" sections, and find what has not been tested in your setting."}, {"c": "Research topic", "q": "What is a literature review for?", "a": "It shows what is already known and where the gap is."}, {"c": "Research topic", "q": "Should you contact a possible supervisor first?", "a": "For research programs, often yes. Send a short email with your specific interest and CV. Check the program rules."}, {"c": "Research topic", "q": "What usually goes in a research proposal?", "a": "Title, background, research question, method, data, timeline, expected contribution and references. Requirements vary."}, {"c": "Research topic", "q": "Why does the method matter?", "a": "The method must answer the question. Say where the data comes from and how you will analyse it."}, {"c": "Research topic", "q": "Can you change your topic after admission?", "a": "Often yes, with your supervisor's agreement. Ask the program."}, {"c": "Good thesis", "q": "What is a good thesis built on?", "a": "A clear question, a sound method, honest results and clear writing."}, {"c": "Good thesis", "q": "What is a thesis statement?", "a": "One or two sentences that state your main claim or question."}, {"c": "Good thesis", "q": "Why test your data early?", "a": "A small pilot or data check shows early whether the project is possible."}, {"c": "Good thesis", "q": "What is plagiarism?", "a": "Using someone else's words or ideas without credit. Universities check for it."}, {"c": "Good thesis", "q": "Can you use AI to write your thesis?", "a": "Follow your university's rules and disclose any use. You must understand and verify everything, including sources."}, {"c": "Good thesis", "q": "How should you keep your references organised?", "a": "Use a reference manager such as Zotero, and save each source as you read it."}, {"c": "Good thesis", "q": "What do examiners look for?", "a": "A clear question, a fitting method, correct use of evidence, honest limits and good structure."}, {"c": "Good thesis", "q": "Why discuss limitations?", "a": "It shows honesty. No study is perfect, and naming limits builds trust."}, {"c": "References and CV", "q": "Who should write your reference letter?", "a": "Someone who knows your work well, such as a lecturer, supervisor or employer. Ask early."}, {"c": "References and CV", "q": "What should you give your referee?", "a": "Your CV, a draft of your letter, the program details, the deadline and the points you hope they can cover."}, {"c": "References and CV", "q": "What should an academic CV include?", "a": "Education, relevant experience, projects or publications and skills, with consistent dates. One to two pages is common."}, {"c": "References and CV", "q": "Why check language requirements early?", "a": "Language tests can have waiting times and expiry dates. Check the minimum level on the program page."}];
+var CATS=["Application", "Cover letter", "Transcript", "CGPA", "Research topic", "Good thesis", "References and CV"];
+var topic='All',deck=ALL.slice(),idx=0,known={},missed={},flipped=false;
+var $=function(i){return document.getElementById(i)};
+function id(c){return ALL.indexOf(c)}
+function build(){var h=$('chips');h.innerHTML='';['All'].concat(CATS).forEach(function(t){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=t;b.setAttribute('aria-pressed',t===topic);b.onclick=function(){topic=t;deck=ALL.filter(function(c){return t==='All'||c.c===t});idx=0;known={};missed={};build();show()};h.appendChild(b)})}
+function show(){$('end').style.display='none';$('study').style.display='block';
+ if(!deck.length)return;var c=deck[idx];flipped=false;$('card').classList.remove('flip');$('grade').style.visibility='hidden';
+ $('ct').textContent=c.c;$('q').textContent=c.q;$('a').textContent=c.a;
+ $('pos').textContent='Card '+(idx+1)+' of '+deck.length;$('kn').textContent=Object.keys(known).length+' known';
+ $('pb').style.width=((idx)/deck.length*100)+'%';$('prev').disabled=idx===0}
+function flip(){flipped=!flipped;$('card').classList.toggle('flip',flipped);if(flipped)$('grade').style.visibility='visible'}
+function advance(){if(idx<deck.length-1){idx++;show()}else finish()}
+function finish(){var k=Object.keys(known).length;$('study').style.display='none';$('end').style.display='block';$('pb').style.width='100%';
+ $('sc').textContent=k+' of '+deck.length+' known';
+ var m=Object.keys(missed).length;$('msg').textContent=m?m+' card'+(m>1?'s':'')+' to review again.':'You knew every card. Now check each program\'s own rules.';$('miss').style.display=m?'inline-block':'none'}
+$('card').onclick=flip;
+$('got').onclick=function(){var c=deck[idx];known[id(c)]=1;delete missed[id(c)];advance()};
+$('again').onclick=function(){var c=deck[idx];missed[id(c)]=1;delete known[id(c)];advance()};
+$('next').onclick=advance;
+$('prev').onclick=function(){if(idx>0){idx--;show()}};
+$('shuf').onclick=function(){for(var i=deck.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=deck[i];deck[i]=deck[j];deck[j]=t}idx=0;show()};
+$('miss').onclick=function(){deck=Object.keys(missed).map(function(i){return ALL[i]});idx=0;known={};missed={};show()};
+$('restart').onclick=function(){topic='All';deck=ALL.slice();idx=0;known={};missed={};build();show()};
+document.addEventListener('keydown',function(e){if(e.target.tagName==='BUTTON'&&e.target.className.indexOf('chip')>-1)return;if(e.key===' '&&e.target.id!=='card'){e.preventDefault();flip()}else if(e.key==='ArrowRight')advance();else if(e.key==='ArrowLeft'&&idx>0){idx--;show()}});
+build();show();
+</script></body></html>
